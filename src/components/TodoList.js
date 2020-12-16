@@ -3,11 +3,14 @@ import {Link} from "react-router-dom";
 import {getTodos} from "../api";
 function TodoList() {
     const [items,setItems]=useState([]);
-    useEffect(()=>{
-        const fetchItems = async()=>{
-            const todos = await getTodos();
-            setItems(todos)
+    
+    const fetchItems = async()=>{
+            const data = await getTodos();
+            setItems(data.todos)
         }
+
+    useEffect(()=>{
+
         fetchItems()
         // setItems([
         //     {text:"foo",id:0},
@@ -17,6 +20,7 @@ function TodoList() {
         // ])
     },[])    
 
+    console.log(items)
     const todoList= items.map(todo=>(
         <tr key={todo._id}>
             <td>{todo.text}</td>
@@ -33,8 +37,11 @@ function TodoList() {
                 <h3>Todo List</h3>
                 <table className="table table-striped mt-3">
                     <thead>
-                        <th>Text</th>
-                        <th>Action</th>
+                        <tr>
+                            <th>Text</th>
+                            <th>Action</th>                            
+                        </tr>
+
                     </thead>
                     <tbody>
                      {
