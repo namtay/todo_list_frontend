@@ -19,7 +19,7 @@ function EditTodo() {
     //    setTodo({
     //        text:"foo"
     //    })
-    },[])
+    },[match.params.id])
     
     const onSubmit =async (data)=>{
         await editTodo(data,match.params.id)
